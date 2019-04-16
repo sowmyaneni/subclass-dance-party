@@ -15,7 +15,24 @@ var makeDancer = function(top, left, timeBetweenSteps) {
   // };
   this.step();
 
-  // dancer.setPosition = function(top, left) {
+};
+
+makeDancer.prototype.step = function() {
+  setTimeout(this.step.bind(this), this.timeBetweenSteps);
+}
+
+makeDancer.prototype.setPosition = function(top, left) {
+    // Use css top and left properties to position our <span> tag
+    // where it belongs on the page. See http://api.jquery.com/css/
+    //
+  var styleSettings = {
+    top: top,
+    left: left
+  };
+  this.$node.css(styleSettings);
+};
+
+ // dancer.setPosition = function(top, left) {
   //   // Use css top and left properties to position our <span> tag
   //   // where it belongs on the page. See http://api.jquery.com/css/
   //   //
@@ -31,20 +48,3 @@ var makeDancer = function(top, left, timeBetweenSteps) {
   
 
   // return dancer;
-};
-
-makeDancer.prototype.step = function() {
-  setTimeout(this.step(), this.timeBetweenSteps);
-  
-}
-
-makeDancer.prototype.setPosition = function(top, left) {
-    // Use css top and left properties to position our <span> tag
-    // where it belongs on the page. See http://api.jquery.com/css/
-    //
-  var styleSettings = {
-    top: top,
-    left: left
-  };
-  this.$node.css(styleSettings);
-};
